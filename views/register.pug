@@ -1,8 +1,9 @@
-extends layout
+extends layout-register
 
-block content
+block content 
     div.wrapper-register
         h1 Register
+        form(action="/" method="POST")
         label username:
             input(type="text" name="username")
         br
@@ -16,4 +17,4 @@ block content
             input(type="file" name="image" multiple)
         br
         label(id="error")
-        button.btn-register-2(id="register") Register
+        button.btn-register-2(id="register" type="submit") Register
