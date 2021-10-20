@@ -1,10 +1,12 @@
 extends layout
 
 block content
-    label Username:
-        input(type="text" name="username")
-    br
-    label Password:
-        input(type="text" name="password")
-    br
-    button(id="login" ) Login
+    div.wrapper-login
+        h1 Login
+        label Username:
+            input(type="text" name="username")
+        br
+        label Password:
+            input(type="text" name="password")
+        br
+        button.btn-login-2(id="login" ) Login

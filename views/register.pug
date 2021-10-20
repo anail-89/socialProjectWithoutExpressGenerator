@@ -1,17 +1,19 @@
 extends layout
 
 block content
-    label username:
-        input(type="text" name="username")
-    br
-    label name:
-        input(type="text" name="name")
-    br
-    label password:
-        input( type="text" name="password")
-    br
-    label image:
-        input(type="file" name="image" multiple)
-    br
-    label(id="error")
-    button(id="register") Register
+    div.wrapper-register
+        h1 Register
+        label username:
+            input(type="text" name="username")
+        br
+        label name:
+            input(type="text" name="name")
+        br
+        label password:
+            input( type="text" name="password")
+        br
+        label
+            input(type="file" name="image" multiple)
+        br
+        label(id="error")
+        button.btn-register-2(id="register") Register

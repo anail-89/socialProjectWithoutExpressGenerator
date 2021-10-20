@@ -1,11 +1,12 @@
 extends layout
 
 block content
-  h1 home page/
+ 
   //- p Welcome to #{title}
 
-
-  button
-    a(href="/register") Register
-  button(id="login")
-    a(href="/login") Login
+  div.wrapper
+    h1 Welcome To Our Social Network
+    button.btn-register
+      a(href="/register") Register
+    button.btn-login
+      a(href="/login") Login
