@@ -67,7 +67,7 @@ class UsersCtrl {
             let user = await Users.create({
                 name: data.name,
                 username: data.username,
-                path: data.file.path,
+                path: data.path,
                 password: await bcrypt.hash(data.password),
                 email: data.email,
                 isActive: true

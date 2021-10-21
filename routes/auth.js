@@ -53,4 +53,35 @@ router.route('/login').post(
 
     }
 );
+router.route('/register').post(
+
+    upload.single('image'),
+    body('name').exists().bail().isLength({ min: 6 }),
+    body('password').exists().bail().isLength({ min: 6 }),
+    validationResult,
+    responseManager,
+
+    async(req, res) => {
+
+        try {
+
+            let user = await AuthCtrl.register({
+                name: req.body.name,
+                username: req.body.username,
+                file: req.file,
+                email: req.body.email,
+                password: req.body.password
+            });
+
+
+            delete user.dataValues.password;
+            res.onSuccess(user, 'User successfully created');
+
+        } catch (e) {
+            //await fs.unlink(path.join(__homedir,req.file.path));
+            res.onError(e);
+
+        }
+
+    });
 module.exports = router;

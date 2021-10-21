@@ -3,17 +3,18 @@ extends layout-register
 block content 
     div.wrapper-register
         h1 Register
-        label username:
-            input(type="text" name="username")
-        br
-        label name:
-            input(type="text" name="name")
-        br
-        label password:
-            input( type="text" name="password")
-        br
-        label
-            input(type="file" name="image" multiple)
-        br
-        label(id="error")
-        button.btn-register-2(id="register" type="submit") Register
+        form(id="register-form" action="/" method="post")
+            label username:
+                input(type="text" name="username")
+            br
+            label name:
+                input(type="text" name="name")
+            br
+            label password:
+                input( type="text" name="password")
+            br
+            label
+                input(type="file" name="image" multiple)
+            br
+            label(id="error")
+            input.btn-register-2(type="submit" value="Register")

@@ -42,8 +42,36 @@ class Auth {
 
 
     }
-    registration(data) {
+    async register(data) {
+        const users = await usersModel.findAll({
+            where: {
+                username: {
+                    [Op.like]: `%${data.username}%`
+                }
+            }
+        });
 
+        if (users.length > 0) {
+            console.log('ka');
+            throw new AppError('User exists');
+            //res.json({ success: false, data: null, message: 'User exists' })
+
+        } else {
+            console.log('chka');
+            console.log(data);
+            // console.log(req.file);
+            let user = await Users.create({
+                name: data.name,
+                username: data.username,
+                path: data.file.path,
+                password: await bcrypt.hash(data.password),
+                email: data.email,
+                isActive: true
+
+            });
+
+            return user;
+        }
     }
 }
 module.exports = new Auth();
