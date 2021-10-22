@@ -6,11 +6,12 @@ const fs = require('fs').promises;
 const path = require('path');
 const usersJsonPath = path.join(__homedir, './users.json');
 const AuthCtrl = require('../controllers/auth.ctrl');
+const bodyParser = require('body-parser');
 const { body, query, param } = require('express-validator');
 
 let storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'uploads/')
+        cb(null, 'public/uploads/')
     },
     filename: function(req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + '.' + mimeType.extension(file.mimetype));
@@ -30,7 +31,7 @@ const Op = Sequelize.Op;
 const validationResult = require('../middlewares/validation-result');
 const responseManager = require('../middlewares/response-handler');
 //const { Sequelize } = require('sequelize');
-
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 router.route('/login').post(
     body('username').exists().notEmpty(),
     body('password').exists().notEmpty(),
@@ -54,7 +55,7 @@ router.route('/login').post(
     }
 );
 router.route('/register').post(
-
+    urlencodedParser,
     upload.single('image'),
     body('name').exists().bail().isLength({ min: 6 }),
     body('password').exists().bail().isLength({ min: 6 }),
@@ -62,6 +63,7 @@ router.route('/register').post(
     responseManager,
 
     async(req, res) => {
+        console.log(req.body, req.file);
 
         try {
 
