@@ -101,3 +101,16 @@ input {
     width: 100px;
     margin: 5px auto;
 }
+
+.log-out {
+    display: block;
+    float: right;
+    background-color: rgb(227, 230, 236);
+    color: rgb(15, 13, 146);
+    padding: 7px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 7px;
+    border: 1px solid grey;
+    width: 100px;
+}

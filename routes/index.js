@@ -11,5 +11,8 @@ router.get('/login', function(req, res, next) {
 router.get('/register', function(req, res, next) {
     res.render('register', { title: 'Register' });
 });
+router.get('/home', function(req, res, next) {
+    res.render('home', { title: 'Home' });
+});
 
 module.exports = router;

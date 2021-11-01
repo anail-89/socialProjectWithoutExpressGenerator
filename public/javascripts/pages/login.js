@@ -11,12 +11,17 @@ window.addEventListener('load', () => {
         // console.log(formData);
 
         login(username, password)
-            .then(data => {
-                if (data.success === true) {
-                    console.log(data);
-                    //window.location.href = '/login.html';
+            .then(response => {
+                if (response.success === true) {
+                    const token = window.localStorage.getItem('token');
+                    if (token) {
+                        window.location.href = '/home';
+                    }
+
+                    window.localStorage.setItem('token', response.data);
+                    window.location.href = '/home';
                 } else {
-                    console.error(data);
+                    console.error(response);
                 }
 
             }).catch(e => {

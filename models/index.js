@@ -1,26 +1,8 @@
-const { Sequelize } = require('sequelize');
-//const config = require('../config/db')['development'];
-// const sequelize = new Sequelize(config.database, config.username, config.password, {
-//     host: config.host,
-//     dialect: config.dialect
-// });
-const sequelize = new Sequelize('test8', 'postgres', 'root', {
-    host: 'localhost',
-    dialect: 'postgresql'
-});
-const db = {};
-
-db.Sequelize = Sequelize;
-
-
-db.sequelize = sequelize;
-
-// console.log(sequelize);
+const db = require('../config/db');
 //Models/tables
-db.Users = require('./users.js')(sequelize, Sequelize);
-db.Posts = require('./posts.js')(sequelize, Sequelize);
-// console.log(db.Users);
-// console.log(db.Users);
+db.Users = require('./users.js')(db.sequelize, db.Sequelize);
+db.Posts = require('./posts.js')(db.sequelize, db.Sequelize);
+
 Object.keys(db).forEach((modelName) => {
     if ('associate' in db[modelName]) {
         db[modelName].associate(db);

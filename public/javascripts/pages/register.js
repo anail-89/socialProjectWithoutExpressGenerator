@@ -1,6 +1,9 @@
 import { register } from '../api/auth.js';
 window.addEventListener('load', () => {
-
+    const token = window.localStorage.getItem('token');
+    if (token) {
+        window.location.href = '/home';
+    }
     const registerForm = document.getElementById('register-form');
     registerForm.addEventListener('submit', async(e) => {
         //     console.log(this);

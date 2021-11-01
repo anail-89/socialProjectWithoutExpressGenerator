@@ -18,16 +18,10 @@ class Auth {
 
             }
         });
-        // console.log(user !== null);
-        // console.log(user.length > 0);
-        // console.log(typeof(user.dataValues) !== undefined);
-        // console.log(typeof(user.dataValues) !== 'undefined');
-        // console.log(user.dataValues.length > 0);
-        // console.log(user.dataValues);
+
         if (user !== null && typeof(user.dataValues) !== undefined) {
-            console.log(user.dataValues.password);
-            console.log(await bcrypt.compare(password, user.dataValues.password));
-            if (bcrypt.compare(data.password, user.dataValues.password)) {
+
+            if (await bcrypt.compare(password, user.dataValues.password)) {
                 return TokenManager.encode({
                     userId: user.dataValues.id
                 });
@@ -37,9 +31,6 @@ class Auth {
             return false;
         }
         return true;
-        return user.dataValues && typeof(user.dataValues) !== undefined && user.dataValues.length > 0 ? user : false;
-
-
 
     }
     async register(data) {
