@@ -113,4 +113,20 @@ input {
     border-radius: 7px;
     border: 1px solid grey;
     width: 100px;
+    margin-top: 15px;
+}
+
+
+/*Home page*/
+
+.wrapper-home {
+    color: white;
+}
+
+.wrapper-home h1 {
+    float: left;
+}
+
+#error {
+    color: red;
 }

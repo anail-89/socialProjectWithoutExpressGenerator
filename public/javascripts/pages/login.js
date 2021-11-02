@@ -21,11 +21,13 @@ window.addEventListener('load', () => {
                     window.localStorage.setItem('token', response.data);
                     window.location.href = '/home';
                 } else {
-                    console.error(response);
+                    document.getElementById('error').innerHTML = response.message;
+
                 }
 
             }).catch(e => {
-                console.log(e);
+
+                console.error(e);
             });
     });
 });

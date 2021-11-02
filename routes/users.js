@@ -29,6 +29,7 @@ const AppError = require('../managers/app-error');
 const Op = Sequelize.Op;
 const validationResult = require('../middlewares/validation-result');
 const responseManager = require('../middlewares/response-handler');
+const validateToken = require('../middlewares/validate-token');
 //const { Sequelize } = require('sequelize');
 
 
@@ -151,5 +152,21 @@ router.route('/:username').get(async(req, res) => {
         res.json({ success: false, data: null, message: e.message });
     }
 });
+router.route('/current').post(
+    validateToken,
+    validationResult,
+    responseManager,
+    async(req, res) => {
+        try {
+            const data = await UsersCtrl.getById(req.decoded.userId);
+            delete data.password;
+            res.onSuccess(data, '');
+        } catch (err) {
+            res.onError(e);
+        }
 
+    }
+
+
+);
 module.exports = router;
