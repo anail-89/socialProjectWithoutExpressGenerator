@@ -28,7 +28,7 @@ class Auth {
             }
             throw new AppError('Username or password is wrong', 403);
         } else {
-            return false;
+            throw new AppError('Login failed, please enter the valid values!', 403);
         }
         return true;
 
@@ -54,7 +54,7 @@ class Auth {
             let user = await Users.create({
                 name: data.name,
                 username: data.username,
-                path: data.file.path,
+                path: data.file ? data.file.path : undefined,
                 password: await bcrypt.hash(data.password),
                 email: data.email,
                 isActive: true

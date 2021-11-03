@@ -63,36 +63,37 @@ router.route('/').get(async(req, res) => {
     }
 
 
-}).post(
+});
+// post(
 
-    upload.single('image'),
-    body('name').exists().bail().isLength({ min: 6 }),
-    body('password').exists().bail().isLength({ min: 6 }),
-    validationResult,
-    responseManager,
+//     upload.single('image'),
+//     body('name').exists().bail().isLength({ min: 6 }),
+//     body('password').exists().bail().isLength({ min: 6 }),
+//     validationResult,
+//     responseManager,
 
-    async(req, res) => {
+//     async(req, res) => {
 
-        try {
+//         try {
 
-            let user = await UsersCtrl.add({
-                name: req.body.name,
-                username: req.body.username,
-                file: req.file,
-                email: req.body.email,
-                password: req.body.password
-            });
+//             let user = await UsersCtrl.add({
+//                 name: req.body.name,
+//                 username: req.body.username,
+//                 file: req.file ? req.file : null,
+//                 email: req.body.email,
+//                 password: req.body.password
+//             });
 
-            delete user.dataValues.password;
-            res.onSuccess(user, 'User successfully created');
+//             delete user.dataValues.password;
+//             res.onSuccess(user, 'User successfully created');
 
-        } catch (e) {
-            //await fs.unlink(path.join(__homedir,req.file.path));
-            res.onError(e);
+//         } catch (e) {
+//             //await fs.unlink(path.join(__homedir,req.file.path));
+//             res.onError(e);
 
-        }
+//         }
 
-    });
+//     });
 
 router.route('/:username').get(async(req, res) => {
     console.log(req.params.username);

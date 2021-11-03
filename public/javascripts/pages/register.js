@@ -27,9 +27,9 @@ window.addEventListener('load', () => {
         formData.append('name', name);
         formData.append('image', image);
         formData.append('email', email);
-        for (var key of formData.entries()) {
-            console.log(key[0] + ', ' + key[1]);
-        }
+        // for (var key of formData.entries()) {
+        //     console.log(key[0] + ', ' + key[1]);
+        // }
 
         register(formData).then(data => {
             if (data.success === true) {

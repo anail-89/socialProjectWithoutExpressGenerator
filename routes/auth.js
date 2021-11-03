@@ -57,9 +57,8 @@ router.route('/login').post(
 );
 router.route('/register').post(
     upload.single('image'),
-    //body('name').exists(),
-    //.bail().isLength({ min: 6 }),
-    //body('password').exists(),
+    body('username').exists().bail().isLength({ min: 6 }),
+    body('password').exists().bail().isLength({ min: 6 }),
     validationResult,
     responseManager,
 
@@ -72,7 +71,7 @@ router.route('/register').post(
             let user = await AuthCtrl.register({
                 name: req.body.name,
                 username: req.body.username,
-                file: req.file,
+                file: req.file ? req.file : undefined,
                 email: req.body.email,
                 password: req.body.password
             });
