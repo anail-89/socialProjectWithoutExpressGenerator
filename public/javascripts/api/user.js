@@ -10,6 +10,10 @@ export const getCurrentUserData = async() => {
 
         });
         console.log(response);
+        if (response.status === 401) {
+            window.localStorage.removeItem('token');
+            window.location.href = '/login';
+        }
         return response.json();
     }
 };
